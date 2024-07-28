@@ -1,11 +1,39 @@
 <script setup>
+import { useRouter } from 'vue-router';
 import { ref, computed } from 'vue';
 const comandInput = ref('');
-const openHelpArea = ref(false)
+const openHelpArea = ref(false);
+const status = ref('normal')
+const router = useRouter()
+const circuloVerificacaoStyles = ref('null');
+
+document.addEventListener('keypress', function(event) {
+  if (event.key === 'Enter') {
+    if(comandInput.value == 'cd /devs' || comandInput.value == 'cd /projetos' || comandInput.value == 'cd /sobre'){
+        circuloVerificacaoStyles.value = 'sucess'
+        status.value = 'carregando'
+        setTimeout(function() {        
+            if(comandInput.value == 'cd /devs'){
+                router.push('/developers')
+            }else if(comandInput.value == 'cd /projetos'){
+                router.push('/projetos')
+            }else if(comandInput.value == 'cd /sobre'){
+                router.push('/sobre')
+            }
+        }, 4000)
+
+    }
+    else{
+        circuloVerificacaoStyles.value = 'fail'
+        comandInput.value = ''
+    }
+  }
+});
 
 </script>
 <template>
     <div class="tela">        
+        <!-- Menu navegavel -->
         <header class="bg-Black">
             <ul class="menu color-gray">
                 <li class="active">HOME</li>
@@ -14,19 +42,21 @@ const openHelpArea = ref(false)
                 <li>SOBRE</li>
             </ul>
         </header>
+        <!-- Prompt de comando -->
         <main>
-            <div class="bg-Black org-geral">
+            <div class="bg-Black org-geral" :class="status">
                 <h1 class="titulo-equipe">Nossa Equipe Hackathon</h1>
                 <div class="org-caminho-terminal">
-                    <div class="circulo-verificacao"></div>
+                    <div class="circulo-verificacao" :class="circuloVerificacaoStyles" name="circulo-verificacao" id="circulo-verificacao"></div>
                     <span class="caminho-terminal">Inimigos.do.terminal@lab1<span class="color-white">:</span> <span class="color-blue">~</span><span class="color-gray">$</span></span>
                     <div class="color-white linha-comando">
                         <span>{{ comandInput }}</span>
-                        <input type="text" maxlength="22" class="color-gray" v-model="comandInput" @focusout="mostrar">
+                        <input type="text" maxlength="22" class="color-gray" autofocus v-model="comandInput" @focusout="mostrar">
                         <div class="barra-Digitacao"></div>
                     </div>
                 </div>
             </div>
+            <!-- Area de ajuda -->
             <div class="botao-help">
                 <button @click="openHelpArea = !openHelpArea">Help</button>
             </div>       
@@ -89,6 +119,9 @@ const openHelpArea = ref(false)
     height: 70%;
     justify-content: space-between;
 }
+.tela header li{
+    cursor: pointer;
+}
 .menu{
     padding: 100px 0px 0px 150px;
     display: flex;
@@ -104,10 +137,14 @@ const openHelpArea = ref(false)
     border-bottom: 2px solid #09548D;
 }
 .titulo-equipe{
+    user-select: none;
     font-size: 46px;
     color: #676767;
 }
 .circulo-verificacao{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border: 1px solid white;
     width: 15px;
     height: 15px;
@@ -120,7 +157,23 @@ const openHelpArea = ref(false)
 .org-geral{
     padding: 150px;
 }
+.carregando::after{
+    padding: 10px;
+    font-size: 32px;
+    color: #989B95;
+    content: ':::';
+    animation: carregando 1s 0s infinite linear;
+}
+@keyframes carregando{
+    0%{
+        content: '...';
+    },
+    100%{
+        content: ':::';
+    }
+}
 .org-caminho-terminal{
+    user-select: none;
     display: flex;
     gap: 20px;
     align-items: center;
@@ -185,6 +238,15 @@ const openHelpArea = ref(false)
     background-color: #22C187;
     color: black;
     transform: translateY(-3px);
+}
+.sucess{
+    border: 1px solid #1B81A8;
+    background-color: #1B81A8;
+}
+div.fail{
+    content: 'x';
+    border: 2px solid red;
+    background-color: red;
 }
 
 @keyframes barraDigitar {
