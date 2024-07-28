@@ -5,3 +5,18 @@
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
 }
+.bg-Black{
+    background-color: black;
+}
+.color-white{
+    color: white;
+}
+.color-blue{
+    color: #367ECE;
+}
+.color-gray{
+    color: #989B95;
+}
+.router-link{
+    text-decoration: none;
+}
