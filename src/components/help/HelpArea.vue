@@ -1,6 +1,6 @@
 <template>
         <div class="help-area">
-            <div>
+            <div class="help-blocoTexto">
                 <ul>
                     <li class="help-titulo">DIGITE</li>
                     <li>cd /devs</li>
@@ -16,7 +16,7 @@
                     <li>sobre</li>
                 </ul>
             </div>
-            <span @click="$emit('openArea')">X</span>
+            <span class="x" @click="$emit('openArea')">X</span>
         </div>
 </template>
 <style scoped>
@@ -55,6 +55,10 @@
 .help-titulo{
     font-weight: 300;
 }
-
-
+.help-blocoTexto{
+    margin-left: 4%;
+}
+.x{
+    margin-right: 20%;
+}
 </style>
