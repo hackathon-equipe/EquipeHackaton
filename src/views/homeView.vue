@@ -132,7 +132,7 @@ const comandInput = ref('');
     font-weight: 700;
     margin-left: 150px;
     justify-self: end;
-    transition: 0.5s ease;
+    transition: 0.4s ease;
     cursor: pointer;
 }
 .botao-help button:hover{
