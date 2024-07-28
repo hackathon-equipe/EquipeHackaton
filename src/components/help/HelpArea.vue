@@ -20,6 +20,15 @@
         </div>
 </template>
 <style scoped>
+@keyframes animationHelp {
+    0% {
+        height: 0px;
+        padding: 0px;
+    }
+    100% {
+        height: 250px;
+    }
+}
 .help-area{
     padding: 75px;
     display: flex;
@@ -31,6 +40,7 @@
     font-weight: 600;
     gap: 50px;
     height: 250px;
+    animation: animationHelp 2s;
 }
 .help-area span{
     cursor: pointer;
@@ -45,4 +55,6 @@
 .help-titulo{
     font-weight: 300;
 }
+
+
 </style>
