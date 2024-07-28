@@ -32,7 +32,7 @@ const titles = [
     padding: 100px 0px 0px 150px;
     display: flex;
     list-style: none;
-    gap: 50px;
+    gap: 25px;
     font-weight: 200;
 }
 </style>
