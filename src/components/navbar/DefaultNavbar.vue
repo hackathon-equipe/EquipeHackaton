@@ -7,7 +7,7 @@ const titles = [
     },
     {
       text: 'DEVELOPERS',
-      link: '/developers'
+      link: '/developers/all'
     },
     {
       text: 'PROJECTS',
