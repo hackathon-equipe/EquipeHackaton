@@ -22,7 +22,41 @@ const router = createRouter({
       path: '/sobre',
       name: 'about',
       component: () => import('../views/aboutView.vue')
-    }
+    },
+
+    // Rotas de cada membro
+
+    {
+      path: '/developers/Ana',
+      name: 'Ana',
+      component: () => import('../views/devsViews/devAnaView.vue')
+    },
+    {
+      path: '/developers/Isabelli',
+      name: 'Isabelli',
+      component: () => import('../views/devsViews/devIsabelliView.vue')
+    },
+    {
+      path: '/developers/Julia',
+      name: 'Julia',
+      component: () => import('../views/devsViews/devJuliaView.vue')
+    },
+    {
+      path: '/developers/Juliana',
+      name: 'Juliana',
+      component: () => import('../views/devsViews/devJulianaView.vue')
+    },
+    {
+      path: '/developers/Rafaela',
+      name: 'Rafaela',
+      component: () => import('../views/devsViews/devRafaelaView.vue')
+    },
+    {
+      path: '/developers/Vinicius',
+      name: 'Vinicius',
+      component: () => import('../views/devsViews/devViniciusView.vue')
+    },
+
   ]
 })
 

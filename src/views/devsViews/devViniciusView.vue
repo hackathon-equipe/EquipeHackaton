@@ -9,14 +9,7 @@ function openArea() {
   openHelpArea.value = !openHelpArea.value
 }
 const commands = {
-  'cd/Ana': '/developers/Ana',
-  'cd/Isabelli': '/developers/Isabelli',
-  'cd/Julia': '/developers/Julia',
-  'cd/Juliana': '/developers/Juliana',
-  'cd/Rafaela': '/developers/Rafaela',
-  'cd/Vinicius': '/developers/Vinicius',
-  'cd/sobre': '/sobre',
-  ls: '/'
+  info: '/',
 }
 </script>
 <template>
@@ -25,7 +18,7 @@ const commands = {
     <DefaultNavbar />
     <main>
       <!-- Prompt de comando -->
-      <DefaultTerminal :comando="commands" />
+      <DefaultTerminal :comando="commands" membroId="6" />
       <!-- Area de ajuda -->
       <ButtonHelp @openArea="openArea" />
     </main>
