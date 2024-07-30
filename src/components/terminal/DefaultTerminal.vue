@@ -1,9 +1,14 @@
 <script setup>
 import { useRouter } from 'vue-router'
+import membrosJson from '@/assets/membros.json'
 import { ref } from 'vue'
 const props = defineProps({
   comando: {
     type: Object,
+    required: true
+  },
+  membros: {
+    type: Array,
     required: true
   }
 })
@@ -11,21 +16,61 @@ const comandInput = ref('')
 const status = ref('normal')
 const router = useRouter()
 const circuloVerificacaoStyles = ref('null')
+// const m = props.membros;
+const style = ref('naoAparece')
 const validCommands = props.comando
+// document.addEventListener('keypress', function (event) {
+//   if (event.key === 'Enter') {
+//     if (validCommands[comandInput.value]) {
+//       if(comandInput.value == 'ls'){
+//       circuloVerificacaoStyles.value = 'sucess'
+//       status.value = 'carregando'
+//       setTimeout(function () {
+//         style.value == 'opacity'
+//         // document.write('hi')
+//       }, 4000)
+//       }
+//       circuloVerificacaoStyles.value = 'sucess'
+//       status.value = 'carregando'
+//       setTimeout(function () {
+//         router.push(validCommands[comandInput.value])
+//       }, 4000)
+//       // if(comandInput.value == 'ls'){
+//       //   for (const m of membrosJson) {
+//       //     membros.push(m.nome.primeiro)
+//       //   }
+//       // }
+//     } else {
+//       circuloVerificacaoStyles.value = 'fail'
+//       comandInput.value = ''
+//     }
+//   }
+// })
+
 document.addEventListener('keypress', function (event) {
   if (event.key === 'Enter') {
     if (validCommands[comandInput.value]) {
       circuloVerificacaoStyles.value = 'sucess'
-      status.value = 'carregando'
-      setTimeout(function () {
-        router.push(validCommands[comandInput.value])
-      }, 4000)
+      // status.value = 'carregando'
+      if (comandInput.value == 'ls') {
+        status.value = 'carregando'
+        setTimeout(function () {
+          style.value = 'opacity'
+        }, 4000)
+      } else {
+        status.value = 'carregando'
+        setTimeout(function () {
+          router.push(validCommands[comandInput.value])
+        }, 4000)
+      }
     } else {
       circuloVerificacaoStyles.value = 'fail'
       comandInput.value = ''
     }
   }
 })
+
+console.log(style.value)
 </script>
 <template>
   <!-- Prompt de comando -->
@@ -55,9 +100,24 @@ document.addEventListener('keypress', function (event) {
         <div class="barra-Digitacao"></div>
       </div>
     </div>
+    <div v-if="comandInput == 'ls'" :class="[style]">
+      <div v-for="membro in membrosJson" :key="membro.id">
+        {{ membro.nome.primeiro }}
+      </div>
+    </div>
   </div>
 </template>
 <style scoped>
+.naoAparece {
+  display: none;
+}
+
+div .opacity {
+  display: flex;
+  gap: 15px;
+  color: #989b95;
+  font-size: 32px;
+}
 .titulo-equipe {
   user-select: none;
   font-size: 46px;
@@ -84,13 +144,23 @@ document.addEventListener('keypress', function (event) {
   font-size: 32px;
   color: #989b95;
   content: ':::';
-  animation: carregando 1s 0s infinite linear;
+  animation: carregando 4s linear;
 }
 @keyframes carregando {
-  0% {
+  10%,
+  30%,
+  40%,
+  60%,
+  80%,
+  100% {
     content: '...';
   }
-  100% {
+  0%,
+  20%,
+  30%,
+  50%,
+  70%,
+  90% {
     content: ':::';
   }
 }
