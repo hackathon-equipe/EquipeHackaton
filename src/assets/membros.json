@@ -6,10 +6,7 @@
         "completo": "Ana Laura Manfron Dias"
       },
       "turma": "2INFO3",
-      "projetos": {
-        "TPinterativa": "https://vinyzada.github.io/TPInterativa/",
-        "Poeirão": "https://analauradias.github.io/poeirao-EC/"
-      }
+      "projetos": [ "TPinterativa","Poeirão"]
     },
     {
       "id": 2,
@@ -18,22 +15,16 @@
         "completo": "Isabelli Luisa Rosa"
       },
       "turma": "2INFO3",
-      "projetos": {
-        "TPinterativa": "https://vinyzada.github.io/TPInterativa/",
-        "FabricaNode": ""
-      }
+      "projetos": [ "TPinterativa","FabricaNode"]
     },
     {
       "id": 3,
       "nome": {
-        "primeiro": "Júlia",
+        "primeiro": "Julia",
         "completo": "Júlia Fuck"
       },
       "turma": "2INFO3",
-      "projetos": {
-        "TPinterativa": "https://vinyzada.github.io/TPInterativa/",
-        "FabricaNode": ""
-      }
+      "projetos": [  "TPinterativa","FabricaNode"]
     },
     {
       "id": 4,
@@ -42,10 +33,7 @@
         "completo": "Juliana Luiza dos Santos"
       },
       "turma": "2INFO3",
-      "projetos": {
-        "TPinterativa": "https://vinyzada.github.io/TPInterativa/",
-        "Arthisto": ""
-      }
+      "projetos": ["TPinterativa","Arthisto"]
     },
     {
       "id": 5,
@@ -54,10 +42,7 @@
         "completo": "Rafaela Barbieri da Cruz"
       },
       "turma": "2INFO3",
-      "projetos": {
-        "TPinterativa": "https://vinyzada.github.io/TPInterativa/",
-        "Poeirão": "https://analauradias.github.io/poeirao-EC/"
-      }
+      "projetos": [ "TPinterativa","Poeirão"]
     },
     {
       "id": 6,
@@ -66,10 +51,7 @@
         "completo": "Vinicius Gabryel Pereira"
       },
       "turma": "2INFO3",
-      "projetos": {
-        "TPinterativa": "https://vinyzada.github.io/TPInterativa/",
-        "FabricaClass": ""
-      }
+      "projetos": ["TPinterativa","FabricaClass"]
     }
   ]
   

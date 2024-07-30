@@ -38,14 +38,14 @@ document.addEventListener('keypress', function (event) {
   if (event.key === 'Enter') {
     if (validCommands[comandInput.value]) {
       circuloVerificacaoStyles.value = 'sucess'
-      if (comandInput.value == 'ls' && router.currentRoute.value.name == membroNome.value) {
+      if (comandInput.value == 'ls' && router.currentRoute.value.name == 'developers') {
         status.value = 'carregando'
         setTimeout(function () {
           style.value = 'opacity'
           status.value = 'normal'
           comandInput.value = ''
         }, 4000)
-      }else if (comandInput.value == 'ls') {
+      }else if (comandInput.value == 'ls' && router.currentRoute.value.name == 'project') {
         status.value = 'carregando'
         setTimeout(function () {
           styleProjects.value = 'opacity'
@@ -120,7 +120,7 @@ document.addEventListener('keypress', function (event) {
     <div :class="[info]">
       <div v-for="membro in membrosJson" :key="membro.id">
         <div v-if="membro.id == membroId" class="infoDev">
-          <span>id: {{ membro.id }}</span>
+          <!-- <span>id: {{ membro.id }}</span> -->
           <span>nome="{{ membro.nome.completo }}"</span>
           <span>turma="{{ membro.turma }}"</span>
           <span>projetos={{ membro.projetos }}</span>
@@ -130,7 +130,7 @@ document.addEventListener('keypress', function (event) {
     <div :class="[infoProjects]">
       <div v-for="projeto in projetosJson" :key="projeto.id">
         <div v-if="projeto.id == membroId" class="infoDev">
-          <span>id: {{ projeto.id }}</span>
+          <!-- <span>id: {{ projeto.id }}</span> -->
           <span>nome="{{ projeto.nome }}"</span>
           <span>desc="{{ projeto.descricao }}"</span>
           <span>participantes="[{{ projeto.participantes }}]"</span>
