@@ -9,9 +9,9 @@ function openArea() {
   openHelpArea.value = !openHelpArea.value
 }
 const commands = {
-  'cd /devs': '/developers/all',
-  'cd /projetos': '/projetos',
-  'cd /sobre': '/sobre'
+  'cd/devs': '/developers/all',
+  'cd/projetos': '/projetos',
+  'cd/sobre': '/sobre'
 }
 </script>
 <template>
