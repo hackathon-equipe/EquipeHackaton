@@ -16,6 +16,17 @@ const commands = {
   'cd/FabricaClass': '/projects/FabricaClass',
   ls: '/'
 }
+
+const helpCommands = [
+ { comando: 'cd/TPInterativa', nome: 'TPInterativa' },
+ { comando: 'cd/Poeirao', nome: 'Poeirao' },
+ { comando: 'cd/FabricaNode', nome: 'FabricaNode' },
+ { comando: 'cd/Arthisto', nome: 'Arthisto' },
+ { comando: 'cd/FabricaNode', nome: 'FabricaNode' },
+ { comando: 'cd/FabricaClass', nome: 'FabricaClass' },
+ {ls: '/'}
+]
+
 </script>
 <template>
   <div class="tela">
@@ -27,7 +38,7 @@ const commands = {
       <!-- Area de ajuda -->
       <ButtonHelp @openArea="openArea" />
     </main>
-    <HelpArea v-if="openHelpArea" @openArea="openArea" />
+    <HelpArea v-if="openHelpArea" @openArea="openArea" :comando="helpCommands"/>
   </div>
 </template>
 <style scoped>
