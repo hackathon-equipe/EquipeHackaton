@@ -9,7 +9,7 @@ function openArea() {
   openHelpArea.value = !openHelpArea.value
 }
 const commands = {
-  'cd/devs': '/developers/all',
+  'cd/devs': '/developers',
   'cd/projetos': '/projetos',
   'cd/sobre': '/sobre'
 }
