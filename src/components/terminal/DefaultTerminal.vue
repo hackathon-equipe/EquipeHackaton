@@ -19,8 +19,8 @@ const props = defineProps({
 })
 
 const membroNome = ref('')
-for(let info of membrosJson) {
-  if(info.id == props.membroId){
+for (let info of membrosJson) {
+  if (info.id == props.membroId) {
     membroNome.value = info.nome.primeiro
   }
 }
@@ -33,6 +33,7 @@ const style = ref('naoAparece')
 const styleProjects = ref('naoAparece')
 const info = ref('naoAparece')
 const infoProjects = ref('naoAparece')
+const infoAbout = ref('naoAparece')
 const validCommands = props.comando
 document.addEventListener('keypress', function (event) {
   if (event.key === 'Enter') {
@@ -45,28 +46,43 @@ document.addEventListener('keypress', function (event) {
           status.value = 'normal'
           comandInput.value = ''
         }, 4000)
-      }else if (comandInput.value == 'ls' && router.currentRoute.value.name == 'project') {
+      } else if (comandInput.value == 'ls' && router.currentRoute.value.name == 'project') {
         status.value = 'carregando'
         setTimeout(function () {
           styleProjects.value = 'opacity'
           status.value = 'normal'
           comandInput.value = ''
         }, 4000)
-      }else if(comandInput.value == 'info' && router.currentRoute.value.name == membroNome.value){
+      } else if (
+        comandInput.value == 'info' &&
+        router.currentRoute.value.name == membroNome.value
+      ) {
         status.value = 'carregando'
         setTimeout(function () {
           info.value = 'opacity'
           status.value = 'normal'
           comandInput.value = ''
         }, 4000)
-      }else if(comandInput.value == 'info'){
+      }
+      else if (
+        comandInput.value == 'info' &&
+        router.currentRoute.value.name == 'about'
+      ) {
+        status.value = 'carregando'
+        setTimeout(function () {
+          infoAbout.value = 'opacity'
+          status.value = 'normal'
+          comandInput.value = ''
+        }, 4000)
+      }
+       else if (comandInput.value == 'info') {
         status.value = 'carregando'
         setTimeout(function () {
           infoProjects.value = 'opacity'
           status.value = 'normal'
           comandInput.value = ''
         }, 4000)
-      }else {
+      } else {
         status.value = 'carregando'
         setTimeout(function () {
           router.push(validCommands[comandInput.value])
@@ -109,12 +125,16 @@ document.addEventListener('keypress', function (event) {
     </div>
     <div :class="[style]">
       <div v-for="membro in membrosJson" :key="membro.id">
-        <router-link class="linkMembros" :to="`/developers/${membro.nome.primeiro}`">{{`/${membro.nome.primeiro}`}}</router-link>
+        <router-link class="linkMembros" :to="`/developers/${membro.nome.primeiro}`">{{
+          `/${membro.nome.primeiro}`
+        }}</router-link>
       </div>
     </div>
     <div :class="[styleProjects]">
       <div v-for="projeto in projetosJson" :key="projeto.id">
-        <router-link class="linkMembros" :to="`/projetos/${projeto.nome}`">{{`/${projeto.nome}`}}</router-link>
+        <router-link class="linkMembros" :to="`/projetos/${projeto.nome}`">{{
+          `/${projeto.nome}`
+        }}</router-link>
       </div>
     </div>
     <div :class="[info]">
@@ -138,27 +158,32 @@ document.addEventListener('keypress', function (event) {
         </div>
       </div>
     </div>
+    <div :class='[infoAbout]'>
+        <div>
+          Essa aplicação apresenta os membros da nossa equipe hackathon. Nosso design é inspirado em um terminal fazendo referência a materia de projeto integrador    
+        </div>
+    </div>
   </div>
 </template>
 <style scoped>
 .naoAparece {
   display: none;
 }
-.infoDev{
+.infoDev, .infoAbout {
   display: flex;
-  flex-direction: column
+  flex-direction: column;
 }
-.info{
+.info {
   display: flex;
-  flex-direction: column
+  flex-direction: column;
 }
 
-.linkMembros{
-    text-decoration: none;
-    color: #676767;
+.linkMembros {
+  text-decoration: none;
+  color: #676767;
 }
 
-div .opacity{
+div .opacity {
   display: flex;
   gap: 15px;
   color: #989b95;
