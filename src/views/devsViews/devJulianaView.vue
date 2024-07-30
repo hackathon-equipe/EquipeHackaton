@@ -18,7 +18,7 @@ const commands = {
     <DefaultNavbar />
     <main>
       <!-- Prompt de comando -->
-      <DefaultTerminal :comando="commands" membroId="3" />
+      <DefaultTerminal :comando="commands" membroId="4" />
       <!-- Area de ajuda -->
       <ButtonHelp @openArea="openArea" />
     </main>
