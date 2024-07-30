@@ -10,6 +10,10 @@ const props = defineProps({
   membros: {
     type: Array,
     required: true
+  },
+  membroId: {
+    type: Number,
+    required: false
   }
 })
 const comandInput = ref('')
@@ -17,6 +21,7 @@ const status = ref('normal')
 const router = useRouter()
 const circuloVerificacaoStyles = ref('null')
 const style = ref('naoAparece')
+const info = ref('naoAparece')
 const validCommands = props.comando
 document.addEventListener('keypress', function (event) {
   if (event.key === 'Enter') {
@@ -29,7 +34,14 @@ document.addEventListener('keypress', function (event) {
           status.value = 'normal'
           comandInput.value = ''
         }, 4000)
-      } else {
+      }else if(comandInput.value == 'info'){
+        status.value = 'carregando'
+        setTimeout(function () {
+          info.value = 'opacity'
+          status.value = 'normal'
+          comandInput.value = ''
+        }, 4000)
+      }else {
         status.value = 'carregando'
         setTimeout(function () {
           router.push(validCommands[comandInput.value])
@@ -74,7 +86,17 @@ console.log(style.value)
     </div>
     <div :class="[style]">
       <div v-for="membro in membrosJson" :key="membro.id">
-        <router-link class="linkMembros" :to="`/developers/${membro.nome.primeiro}`">{{ membro.nome.primeiro }}</router-link>
+        <router-link class="linkMembros" :to="`/developers/${membro.nome.primeiro}`">{{`/${membro.nome.primeiro}`}}</router-link>
+      </div>
+    </div>
+    <div :class="[info]">
+      <div v-for="membro in membrosJson" :key="membro.id">
+        <div v-if="membro.id == membroId" class="infoDev">
+          <span>id: {{ membro.id }}</span>
+          <span>nome="{{ membro.nome.completo }}"</span>
+          <span>turma="{{ membro.turma }}"</span>
+          <span>projetos={{ membro.projetos }}</span>
+        </div>
       </div>
     </div>
   </div>
@@ -83,14 +105,21 @@ console.log(style.value)
 .naoAparece {
   display: none;
 }
+.infoDevProjetos{
+  display: flex;
+  flex-direction: column
+}
+.infoDev{
+  display: flex;
+  flex-direction: column
+}
 
 .linkMembros{
     text-decoration: none;
     color: #676767;
 }
 
-
-div .opacity {
+div .opacity{
   display: flex;
   gap: 15px;
   color: #989b95;
