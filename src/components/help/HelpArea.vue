@@ -16,7 +16,7 @@
                     <li>sobre</li>
                 </ul>
             </div>
-            <span class="x" @click="$emit('openArea')">X</span>
+            <span class="closeButton" @click="$emit('openArea')">X</span>
         </div>
 </template>
 <style scoped>
@@ -29,6 +29,17 @@
         height: 250px;
     }
 }
+@keyframes animationCloseButton{
+    0%, 90%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+.closeButton{
+    animation: animationCloseButton .55s;
+}
 .help-area{
     padding: 75px;
     display: flex;
@@ -40,7 +51,7 @@
     font-weight: 600;
     gap: 50px;
     height: 250px;
-    animation: animationHelp 2s;
+    animation: animationHelp .5s;
 }
 .help-area span{
     cursor: pointer;
@@ -57,8 +68,5 @@
 }
 .help-blocoTexto{
     margin-left: 4%;
-}
-.x{
-    margin-right: 20%;
 }
 </style>

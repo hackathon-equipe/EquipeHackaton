@@ -16,46 +16,18 @@ const comandInput = ref('')
 const status = ref('normal')
 const router = useRouter()
 const circuloVerificacaoStyles = ref('null')
-// const m = props.membros;
 const style = ref('naoAparece')
 const validCommands = props.comando
-// document.addEventListener('keypress', function (event) {
-//   if (event.key === 'Enter') {
-//     if (validCommands[comandInput.value]) {
-//       if(comandInput.value == 'ls'){
-//       circuloVerificacaoStyles.value = 'sucess'
-//       status.value = 'carregando'
-//       setTimeout(function () {
-//         style.value == 'opacity'
-//         // document.write('hi')
-//       }, 4000)
-//       }
-//       circuloVerificacaoStyles.value = 'sucess'
-//       status.value = 'carregando'
-//       setTimeout(function () {
-//         router.push(validCommands[comandInput.value])
-//       }, 4000)
-//       // if(comandInput.value == 'ls'){
-//       //   for (const m of membrosJson) {
-//       //     membros.push(m.nome.primeiro)
-//       //   }
-//       // }
-//     } else {
-//       circuloVerificacaoStyles.value = 'fail'
-//       comandInput.value = ''
-//     }
-//   }
-// })
-
 document.addEventListener('keypress', function (event) {
   if (event.key === 'Enter') {
     if (validCommands[comandInput.value]) {
       circuloVerificacaoStyles.value = 'sucess'
-      // status.value = 'carregando'
       if (comandInput.value == 'ls') {
         status.value = 'carregando'
         setTimeout(function () {
           style.value = 'opacity'
+          status.value = 'normal'
+          comandInput.value = ''
         }, 4000)
       } else {
         status.value = 'carregando'
@@ -100,9 +72,9 @@ console.log(style.value)
         <div class="barra-Digitacao"></div>
       </div>
     </div>
-    <div v-if="comandInput == 'ls'" :class="[style]">
+    <div :class="[style]">
       <div v-for="membro in membrosJson" :key="membro.id">
-        {{ membro.nome.primeiro }}
+        <router-link class="linkMembros" :to="`/developers/${membro.nome.primeiro}`">{{ membro.nome.primeiro }}</router-link>
       </div>
     </div>
   </div>
@@ -111,6 +83,12 @@ console.log(style.value)
 .naoAparece {
   display: none;
 }
+
+.linkMembros{
+    text-decoration: none;
+    color: #676767;
+}
+
 
 div .opacity {
   display: flex;
