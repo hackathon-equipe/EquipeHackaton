@@ -57,6 +57,33 @@ const router = createRouter({
       component: () => import('../views/devsViews/devViniciusView.vue')
     },
 
+    // Rotas de cada projeto
+
+    {
+      path: '/projects/TPInterativa',
+      name: 'TPInterativa',
+      component: () => import('../views/projectsViews/projectTPInterativaView.vue')
+    },
+    {
+      path: '/projects/Poeirao',
+      name: 'Poeirao',
+      component: () => import('../views/projectsViews/projectPoeiraoView.vue')
+    },
+    {
+      path: '/projects/Arthisto',
+      name: 'Arthisto',
+      component: () => import('../views/projectsViews/projectArthistoView.vue')
+    },
+    {
+      path: '/projects/FabricaClass',
+      name: 'FabricaClass',
+      component: () => import('../views/projectsViews/projectFabricaClassView.vue')
+    },
+    {
+      path: '/projects/FabricaNode',
+      name: 'FabricaNode',
+      component: () => import('../views/projectsViews/projectFabricaNodeView.vue')
+    },
   ]
 })
 
