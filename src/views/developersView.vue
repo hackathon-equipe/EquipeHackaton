@@ -18,6 +18,18 @@ const commands = {
   'cd/sobre': '/sobre',
   ls: '/'
 }
+
+const helpCommands = [
+  { comando:'cd/Ana', nome:'Ana'},
+  { comando:'cd/Isabelli', nome:'Isabelli'},
+  { comando:'cd/Julia', nome:'Julia'},
+  { comando:'cd/Juliana', nome:'Juliana'},
+  { comando:'cd/Rafae comando:la', nome:'Rafaela'},
+  { comando:'cd/Vinicius', nome:'Vinicius'},
+  { comando:'cd/sobre', nome:'sobre'},
+  { comando:'ls', nome:'listar membros'}
+]
+
 </script>
 <template>
   <div class="tela">
@@ -29,7 +41,7 @@ const commands = {
       <!-- Area de ajuda -->
       <ButtonHelp @openArea="openArea" />
     </main>
-    <HelpArea v-if="openHelpArea" @openArea="openArea" />
+    <HelpArea v-if="openHelpArea" @openArea="openArea" :comando="helpCommands" />
   </div>
 </template>
 <style scoped>
