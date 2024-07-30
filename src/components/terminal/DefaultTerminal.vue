@@ -1,6 +1,7 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import membrosJson from '@/assets/membros.json'
+import projetosJson from '@/assets/projetos.json'
 import { ref } from 'vue'
 const props = defineProps({
   comando: {
@@ -16,25 +17,41 @@ const props = defineProps({
     required: false
   }
 })
+
+const membroNome = ref('')
+for(let info of membrosJson) {
+  if(info.id == props.membroId){
+    membroNome.value = info.nome.primeiro
+  }
+}
+
 const comandInput = ref('')
 const status = ref('normal')
 const router = useRouter()
 const circuloVerificacaoStyles = ref('null')
 const style = ref('naoAparece')
+const styleProjects = ref('naoAparece')
 const info = ref('naoAparece')
 const validCommands = props.comando
 document.addEventListener('keypress', function (event) {
   if (event.key === 'Enter') {
     if (validCommands[comandInput.value]) {
       circuloVerificacaoStyles.value = 'sucess'
-      if (comandInput.value == 'ls') {
+      if (comandInput.value == 'ls' && router.currentRoute.value.name == membroNome.value) {
         status.value = 'carregando'
         setTimeout(function () {
           style.value = 'opacity'
           status.value = 'normal'
           comandInput.value = ''
         }, 4000)
-      }else if(comandInput.value == 'info'){
+      }else if (comandInput.value == 'ls') {
+        status.value = 'carregando'
+        setTimeout(function () {
+          styleProjects.value = 'opacity'
+          status.value = 'normal'
+          comandInput.value = ''
+        }, 4000)
+      }else if(comandInput.value == 'info' && router.currentRoute.value.name == membroNome.value){
         status.value = 'carregando'
         setTimeout(function () {
           info.value = 'opacity'
@@ -53,8 +70,6 @@ document.addEventListener('keypress', function (event) {
     }
   }
 })
-
-console.log(style.value)
 </script>
 <template>
   <!-- Prompt de comando -->
@@ -89,6 +104,11 @@ console.log(style.value)
         <router-link class="linkMembros" :to="`/developers/${membro.nome.primeiro}`">{{`/${membro.nome.primeiro}`}}</router-link>
       </div>
     </div>
+    <div :class="[styleProjects]">
+      <div v-for="projeto in projetosJson" :key="projeto.id">
+        <router-link class="linkMembros" :to="`/projetos/${projeto.nome}`">{{`/${projeto.nome}`}}</router-link>
+      </div>
+    </div>
     <div :class="[info]">
       <div v-for="membro in membrosJson" :key="membro.id">
         <div v-if="membro.id == membroId" class="infoDev">
@@ -105,11 +125,11 @@ console.log(style.value)
 .naoAparece {
   display: none;
 }
-.infoDevProjetos{
+.infoDev{
   display: flex;
   flex-direction: column
 }
-.infoDev{
+.info{
   display: flex;
   flex-direction: column
 }
