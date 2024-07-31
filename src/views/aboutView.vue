@@ -13,7 +13,7 @@ const commands = {
 }
 
 const helpCommands = [
-
+  { comando:'info', nome:'informações'},
 ]
 
 </script>
