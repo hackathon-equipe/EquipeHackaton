@@ -9,7 +9,7 @@ function openArea() {
   openHelpArea.value = !openHelpArea.value
 }
 const commands = {
-
+  info: '/',
 }
 
 const helpCommands = [
