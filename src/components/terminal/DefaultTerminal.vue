@@ -15,6 +15,10 @@ const props = defineProps({
   membroId: {
     type: Number,
     required: false
+  },
+  terminalRoute: {
+    type: String,
+    required: true,
   }
 })
 
@@ -119,8 +123,7 @@ document.addEventListener('keypress', function (event) {
       ></div>
       <span class="caminho-terminal"
         >Inimigos.do.terminal@lab1<span class="color-white">:</span>
-        <span class="color-blue">~</span><span class="color-gray">$</span></span
-      >
+        <span class="color-blue">~</span><span class="color-gray">$</span><span>{{ terminalRoute }}</span></span>
       <div class="color-white linha-comando">
         <span>{{ comandInput }}</span>
         <input

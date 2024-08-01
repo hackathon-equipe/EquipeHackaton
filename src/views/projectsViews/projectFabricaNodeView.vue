@@ -19,7 +19,7 @@ const commands = {
     <DefaultNavbar />
     <main>
       <!-- Prompt de comando -->
-      <DefaultTerminal :comando="commands" membroId="3" />
+      <DefaultTerminal :comando="commands" membroId="3" terminalRoute="/projects/FabricaNode" />
       <!-- Area de ajuda -->
       <ButtonHelp @openArea="openArea" />
     </main>
@@ -29,7 +29,8 @@ const commands = {
 <style scoped>
 .tela {
   width: 100vw;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   background-color: black;
 }
 .tela main {

@@ -38,7 +38,7 @@ const helpCommands = [
     <DefaultNavbar />
     <main>
       <!-- Prompt de comando -->
-      <DefaultTerminal :comando="commands" />
+      <DefaultTerminal :comando="commands" terminalRoute="/developers" />
       <!-- Area de ajuda -->
       <ButtonHelp @openArea="openArea" />
     </main>
@@ -48,7 +48,8 @@ const helpCommands = [
 <style scoped>
 .tela {
   width: 100vw;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   background-color: black;
 }
 .tela main {

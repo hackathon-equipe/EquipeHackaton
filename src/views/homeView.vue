@@ -37,7 +37,8 @@ const helpCommands = [
 <style scoped>
 .tela {
   width: 100vw;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   background-color: black;
 }
 .tela main {
