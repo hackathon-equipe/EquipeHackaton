@@ -30,7 +30,7 @@ defineProps({
        padding: 0px;
    }
    100% {
-       height: 250px;
+       height: 350px;
    }
 }
 @keyframes animationCloseButton{
@@ -48,13 +48,13 @@ defineProps({
    padding: 75px;
    display: flex;
    width: 100vw;
+   height: 350px;
    background-color: #181818;
    position: absolute;
-   bottom: 0;
    color: #989B95;
+   bottom: 0;
    font-weight: 600;
    gap: 50px;
-   height: 250px;
    animation: animationHelp .5s;
 }
 .help-area span{
@@ -62,7 +62,7 @@ defineProps({
    font-size: 18px;
    position: absolute;
    right: 40px;
-   bottom: 200px;
+   bottom: 300px;
 }
 .help-area ul{
    list-style: none;
