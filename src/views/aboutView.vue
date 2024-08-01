@@ -10,6 +10,7 @@ function openArea() {
 }
 const commands = {
   info: '/',
+  'cd ..': '/',
 }
 
 const helpCommands = [

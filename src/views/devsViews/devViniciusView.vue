@@ -10,6 +10,7 @@ function openArea() {
 }
 const commands = {
   info: '/',
+  'cd ..': '/developers',
 }
 </script>
 <template>

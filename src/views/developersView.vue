@@ -16,6 +16,7 @@ const commands = {
   'cd/Rafaela': '/developers/Rafaela',
   'cd/Vinicius': '/developers/Vinicius',
   'cd/sobre': '/sobre',
+  'cd ..': '/',
   ls: '/'
 }
 
