@@ -2,7 +2,7 @@
 import { useRouter } from 'vue-router'
 import membrosJson from '@/assets/membros.json'
 import projetosJson from '@/assets/projetos.json'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 const props = defineProps({
   comando: {
     type: Object,
@@ -24,15 +24,26 @@ for (let info of membrosJson) {
     membroNome.value = info.nome.primeiro
   }
 }
-
+const projetoNome = ref('')
+for (let info of projetosJson) {
+  if (info.id == props.membroId) {
+    projetoNome.value = info.nome
+  }
+}
 const comandInput = ref('')
 const status = ref('normal')
 const router = useRouter()
 const circuloVerificacaoStyles = ref('null')
 const style = ref('naoAparece')
 const styleProjects = ref('naoAparece')
-const info = ref('opacity')
-const infoProjects = ref('naoAparece')
+const info = computed(() => {
+ return (router.currentRoute.value.name == membroNome.value)? 'opacity'
+     : 'naoAparece';
+ });
+const infoProjects =  computed(() => {
+ return (router.currentRoute.value.name == projetoNome.value)? 'opacity'
+     : 'naoAparece';
+ });
 const infoAbout = ref('naoAparece')
 const validCommands = props.comando
 document.addEventListener('keypress', function (event) {
