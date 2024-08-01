@@ -151,7 +151,6 @@ document.addEventListener('keypress', function (event) {
     <div :class="[info]">
       <div v-for="membro in membrosJson" :key="membro.id">
         <div v-if="membro.id == membroId" class="infoDev">
-          <!-- <span>id: {{ membro.id }}</span> -->
           <span>nome="{{ membro.nome.completo }}"</span>
           <span>turma="{{ membro.turma }}"</span>
           <span>projetos={{ membro.projetos }}</span>
@@ -161,7 +160,6 @@ document.addEventListener('keypress', function (event) {
     <div :class="[infoProjects]">
       <div v-for="projeto in projetosJson" :key="projeto.id">
         <div v-if="projeto.id == membroId" class="infoDev">
-          <!-- <span>id: {{ projeto.id }}</span> -->
           <span>nome="{{ projeto.nome }}"</span>
           <span>desc="{{ projeto.descricao }}"</span>
           <span>participantes="[{{ projeto.participantes }}]"</span>

@@ -14,6 +14,7 @@ const commands = {
   'cd/FabricaNode': '/projects/FabricaNode',
   'cd/Arthisto': '/projects/Arthisto',
   'cd/FabricaClass': '/projects/FabricaClass',
+  'cd ..': '/',
   ls: '/'
 }
 
