@@ -1,0 +1,57 @@
+[
+    {
+      "id": 1,
+      "nome": {
+        "primeiro": "Ana",
+        "completo": "Ana Laura Manfron Dias"
+      },
+      "turma": "2INFO3",
+      "projetos": [ "TPinterativa","Poeirão"]
+    },
+    {
+      "id": 2,
+      "nome": {
+        "primeiro": "Isabelli",
+        "completo": "Isabelli Luisa Rosa"
+      },
+      "turma": "2INFO3",
+      "projetos": [ "TPinterativa","FabricaNode"]
+    },
+    {
+      "id": 3,
+      "nome": {
+        "primeiro": "Julia",
+        "completo": "Júlia Fuck"
+      },
+      "turma": "2INFO3",
+      "projetos": [  "TPinterativa","FabricaNode"]
+    },
+    {
+      "id": 4,
+      "nome": {
+        "primeiro": "Juliana",
+        "completo": "Juliana Luiza dos Santos"
+      },
+      "turma": "2INFO3",
+      "projetos": ["TPinterativa","Arthisto"]
+    },
+    {
+      "id": 5,
+      "nome": {
+        "primeiro": "Rafaela",
+        "completo": "Rafaela Barbieri da Cruz"
+      },
+      "turma": "2INFO3",
+      "projetos": [ "TPinterativa","Poeirão"]
+    },
+    {
+      "id": 6,
+      "nome": {
+        "primeiro": "Vinicius",
+        "completo": "Vinicius Gabryel Pereira"
+      },
+      "turma": "2INFO3",
+      "projetos": ["TPinterativa","FabricaClass"]
+    }
+  ]
+  
