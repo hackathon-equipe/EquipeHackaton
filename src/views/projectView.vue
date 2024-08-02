@@ -10,11 +10,11 @@ function openArea() {
   openHelpArea.value = !openHelpArea.value
 }
 const commands = {
-  'cd/TPInterativa': '/projects/TPInterativa',
-  'cd/Poeirao': '/projects/Poeirao',
-  'cd/FabricaNode': '/projects/FabricaNode',
-  'cd/Arthisto': '/projects/Arthisto',
-  'cd/FabricaClass': '/projects/FabricaClass',
+  'cd/TPInterativa': '/projetos/TPInterativa',
+  'cd/Poeirao': '/projetos/Poeirao',
+  'cd/FabricaNode': '/projetos/FabricaNode',
+  'cd/Arthisto': '/projetos/Arthisto',
+  'cd/FabricaClass': '/projetos/FabricaClass',
   'cd ..': '/',
   ls: '/'
 }
