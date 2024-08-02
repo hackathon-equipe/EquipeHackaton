@@ -10,13 +10,13 @@ function openArea() {
 }
 const commands = {
   info: '/',
-  'cd ..': '/',
+  'cd ..': '/'
 }
 
 const helpCommands = [
-  { comando:'info', nome:'informações'},
+  { comando: 'info', nome: 'informações' },
+  { comando: 'cd ..', nome: 'Página anterior' }
 ]
-
 </script>
 <template>
   <div class="tela">
@@ -24,11 +24,11 @@ const helpCommands = [
     <DefaultNavbar />
     <main>
       <!-- Prompt de comando -->
-      <DefaultTerminal :comando="commands" terminalRoute="/about" />
+      <DefaultTerminal :comando="commands" terminalRoute="/sobre" />
       <!-- Area de ajuda -->
       <ButtonHelp @openArea="openArea" />
     </main>
-    <HelpArea v-if="openHelpArea" @openArea="openArea" :comando="helpCommands"/>
+    <HelpArea v-if="openHelpArea" @openArea="openArea" :comando="helpCommands" />
   </div>
 </template>
 <style scoped>

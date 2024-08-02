@@ -4,6 +4,7 @@ import DefaultNavbar from '@/components/navbar/DefaultNavbar.vue'
 import DefaultTerminal from '@/components/terminal/DefaultTerminal.vue'
 import ButtonHelp from '@/components/help/ButtonHelp.vue'
 import HelpArea from '@/components/help/HelpArea.vue'
+import membrosJson from '@/assets/membros.json'
 const openHelpArea = ref(false)
 function openArea() {
   openHelpArea.value = !openHelpArea.value
@@ -21,16 +22,21 @@ const commands = {
 }
 
 const helpCommands = [
-  { comando:'cd/Ana', nome:'Ana'},
-  { comando:'cd/Isabelli', nome:'Isabelli'},
-  { comando:'cd/Julia', nome:'Julia'},
-  { comando:'cd/Juliana', nome:'Juliana'},
-  { comando:'cd/Rafae comando:la', nome:'Rafaela'},
-  { comando:'cd/Vinicius', nome:'Vinicius'},
-  { comando:'cd/sobre', nome:'sobre'},
-  { comando:'ls', nome:'listar membros'}
+  { comando: 'cd/Ana', nome: 'Ana' },
+  { comando: 'cd/Isabelli', nome: 'Isabelli' },
+  { comando: 'cd/Julia', nome: 'Julia' },
+  { comando: 'cd/Juliana', nome: 'Juliana' },
+  { comando: 'cd/Rafae comando:la', nome: 'Rafaela' },
+  { comando: 'cd/Vinicius', nome: 'Vinicius' },
+  { comando: 'cd/sobre', nome: 'sobre' },
+  { comando: 'cd ..', nome: 'Página anterior' },
+  { comando: 'ls', nome: 'listar membros' }
 ]
 
+const membros = ref([])
+for (const membro of membrosJson) {
+  membros.value.push(membro.nome.primeiro)
+}
 </script>
 <template>
   <div class="tela">
@@ -38,7 +44,7 @@ const helpCommands = [
     <DefaultNavbar />
     <main>
       <!-- Prompt de comando -->
-      <DefaultTerminal :comando="commands" terminalRoute="/developers" />
+      <DefaultTerminal :comando="commands" terminalRoute="/developers" :json-nomes="membros"/>
       <!-- Area de ajuda -->
       <ButtonHelp @openArea="openArea" />
     </main>

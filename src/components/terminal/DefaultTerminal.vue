@@ -1,114 +1,71 @@
 <script setup>
-import { useRouter } from 'vue-router'
-import membrosJson from '@/assets/membros.json'
-import projetosJson from '@/assets/projetos.json'
-import { ref, computed } from 'vue'
+import { useRouter, useRoute } from 'vue-router'
+import { ref } from 'vue'
+const router = useRouter()
+const route = useRoute()
 const props = defineProps({
   comando: {
     type: Object,
     required: true
   },
-  membros: {
+  jsonNomes: {
     type: Array,
     required: true
   },
-  membroId: {
+  jsonInfo: {
     type: Number,
     required: false
   },
   terminalRoute: {
     type: String,
-    required: true,
+    required: true
   }
 })
-
-const membroNome = ref('')
-for (let info of membrosJson) {
-  if (info.id == props.membroId) {
-    membroNome.value = info.nome.primeiro
-  }
-}
-const projetoNome = ref('')
-for (let info of projetosJson) {
-  if (info.id == props.membroId) {
-    projetoNome.value = info.nome
-  }
-}
 const comandInput = ref('')
 const status = ref('normal')
-const router = useRouter()
 const circuloVerificacaoStyles = ref('null')
 const style = ref('naoAparece')
-const styleProjects = ref('naoAparece')
-const info = computed(() => {
- return (router.currentRoute.value.name == membroNome.value)? 'opacity'
-     : 'naoAparece';
- });
-const infoProjects =  computed(() => {
- return (router.currentRoute.value.name == projetoNome.value)? 'opacity'
-     : 'naoAparece';
- });
-const infoAbout = ref('naoAparece')
 const validCommands = props.comando
-document.addEventListener('keypress', function (event) {
-  if (event.key === 'Enter') {
-    if (validCommands[comandInput.value]) {
-      circuloVerificacaoStyles.value = 'sucess'
-      if (comandInput.value == 'ls' && router.currentRoute.value.name == 'developers') {
-        status.value = 'carregando'
-        setTimeout(function () {
-          style.value = 'opacity'
-          status.value = 'normal'
-          comandInput.value = ''
-        }, 4000)
-      } else if (comandInput.value == 'ls' && router.currentRoute.value.name == 'project') {
-        status.value = 'carregando'
-        setTimeout(function () {
-          styleProjects.value = 'opacity'
-          status.value = 'normal'
-          comandInput.value = ''
-        }, 4000)
-      } else if (
-        comandInput.value == 'info' &&
-        router.currentRoute.value.name == membroNome.value
-      ) {
-        status.value = 'carregando'
-        setTimeout(function () {
-          info.value = 'opacity'
-          status.value = 'normal'
-          comandInput.value = ''
-        }, 4000)
-      }
-      else if (
-        comandInput.value == 'info' &&
-        router.currentRoute.value.name == 'about'
-      ) {
-        status.value = 'carregando'
-        setTimeout(function () {
-          infoAbout.value = 'opacity'
-          status.value = 'normal'
-          comandInput.value = ''
-        }, 4000)
-      }
-       else if (comandInput.value == 'info') {
-        status.value = 'carregando'
-        setTimeout(function () {
-          infoProjects.value = 'opacity'
-          status.value = 'normal'
-          comandInput.value = ''
-        }, 4000)
-      } else {
-        status.value = 'carregando'
-        setTimeout(function () {
-          router.push(validCommands[comandInput.value])
-        }, 4000)
-      }
+function ComandLs() {
+  status.value = 'carregando'
+  setTimeout(function () {
+    style.value = 'opacity'
+    status.value = 'normal'
+    comandInput.value = ''
+  }, 4000)
+}
+
+function ComandInfo() {
+  status.value = 'carregando'
+  setTimeout(function () {
+    style.value = 'opacity'
+    status.value = 'normal'
+    comandInput.value = ''
+  }, 4000)
+}
+
+function ComandGeral() {
+  status.value = 'carregando'
+  setTimeout(function () {
+    router.push(validCommands[comandInput.value])
+  }, 4000)
+}
+
+function terminal() {
+  if (validCommands[comandInput.value]) {
+    circuloVerificacaoStyles.value = 'sucess'
+    if (comandInput.value == 'ls') {
+      ComandLs()
+    } else if (comandInput.value == 'info') {
+      ComandInfo()
     } else {
-      circuloVerificacaoStyles.value = 'fail'
-      comandInput.value = ''
+      ComandGeral()
     }
+  } else {
+    circuloVerificacaoStyles.value = 'fail'
+    comandInput.value = ''
   }
-})
+}
 </script>
 <template>
   <!-- Prompt de comando -->
@@ -122,8 +79,9 @@ document.addEventListener('keypress', function (event) {
         id="circulo-verificacao"
       ></div>
       <span class="caminho-terminal"
-        >Inimigos.do.terminal@lab1<span class="color-white">:</span>
-        <span class="color-blue">~</span><span class="color-gray">$</span><span>{{ terminalRoute }}</span></span>
+        >Inimigos.do.terminal@lab1{{ props.terminalRoute }}<span class="color-white">:</span>
+        <span class="color-blue">~</span><span class="color-gray">$</span></span
+      >
       <div class="color-white linha-comando">
         <span>{{ comandInput }}</span>
         <input
@@ -132,48 +90,40 @@ document.addEventListener('keypress', function (event) {
           class="color-gray"
           autofocus
           v-model="comandInput"
-          @focusout="mostrar"
+          @keydown.enter="terminal()"
         />
         <div class="barra-Digitacao"></div>
       </div>
     </div>
     <div :class="[style]">
-      <div v-for="membro in membrosJson" :key="membro.id">
-        <router-link class="linkMembros" :to="`/developers/${membro.nome.primeiro}`">{{
-          `/${membro.nome.primeiro}`
+      <div v-for="nome in props.jsonNomes" :key="nome.id">
+        <router-link class="linkMembros" :to="`${route.fullPath + '/' + nome}`">{{
+          `/${nome}`
         }}</router-link>
       </div>
     </div>
-    <div :class="[styleProjects]">
-      <div v-for="projeto in projetosJson" :key="projeto.id">
-        <router-link class="linkMembros" :to="`/projetos/${projeto.nome}`">{{
-          `/${projeto.nome}`
-        }}</router-link>
+    <div :class="[style]">
+      <div v-if="route.fullPath == '/sobre'">
+        Essa aplicação apresenta os membros da nossa equipe hackathon. Nosso design é inspirado em
+        um terminal fazendo referência a materia de projeto integrador
       </div>
-    </div>
-    <div :class="[info]">
-      <div v-for="membro in membrosJson" :key="membro.id">
-        <div v-if="membro.id == membroId" class="infoDev">
-          <span>nome="{{ membro.nome.completo }}"</span>
-          <span>turma="{{ membro.turma }}"</span>
-          <span>projetos={{ membro.projetos }}</span>
+      <div v-else v-for="info in props.jsonInfo" :key="info.id">
+        <div v-if="route.fullPath == '/developers' + '/' + info.nome.primeiro">
+          <div v-if="info.nome.primeiro == route.params.id" class="infoDev">
+            <span>nome: "{{ info.nome.completo }}"</span>
+            <span>turma: "{{ info.turma }}"</span>
+            <span>projetos: {{ info.projetos }}</span>
+          </div>
+        </div>
+        <div v-if="route.fullPath == '/projetos' + '/' + info.nome">
+          <div v-if="info.nome == route.params.id" class="infoDev">
+            <span>nome: "{{ info.nome }}"</span>
+            <span>descrição: "{{ info.descricao }}"</span>
+            <span>participantes: {{ info.participantes }}</span>
+            <span>link: {{ info.link }}</span>
+          </div>
         </div>
       </div>
-    </div>
-    <div :class="[infoProjects]">
-      <div v-for="projeto in projetosJson" :key="projeto.id">
-        <div v-if="projeto.id == membroId" class="infoDev">
-          <span>nome="{{ projeto.nome }}"</span>
-          <span>desc="{{ projeto.descricao }}"</span>
-          <span>participantes="[{{ projeto.participantes }}]"</span>
-          <span>link="{{ projeto.link }}"</span>
-        </div>
-      </div>
-    </div>
-    <div :class='[infoAbout]'>
-        <div>
-          Essa aplicação apresenta os membros da nossa equipe hackathon. Nosso design é inspirado em um terminal fazendo referência a materia de projeto integrador    
-        </div>
     </div>
   </div>
 </template>
@@ -181,7 +131,8 @@ document.addEventListener('keypress', function (event) {
 .naoAparece {
   display: none;
 }
-.infoDev, .infoAbout {
+.infoDev,
+.infoAbout {
   display: flex;
   flex-direction: column;
 }

@@ -15,75 +15,26 @@ const router = createRouter({
     },
     {
       path: '/projetos',
-      name: 'project',
+      name: 'projetos',
       component: () => import('../views/projectView.vue')
     },
     {
       path: '/sobre',
-      name: 'about',
+      name: 'sobre',
       component: () => import('../views/aboutView.vue')
     },
-
-    // Rotas de cada membro
-
     {
-      path: '/developers/Ana',
-      name: 'Ana',
-      component: () => import('../views/devsViews/devAnaView.vue')
+      path: '/developers/:id',
+      name: 'developersMembro',
+      component: () => import('../views/developersMembroView.vue'),
+      params: true
     },
     {
-      path: '/developers/Isabelli',
-      name: 'Isabelli',
-      component: () => import('../views/devsViews/devIsabelliView.vue')
-    },
-    {
-      path: '/developers/Julia',
-      name: 'Julia',
-      component: () => import('../views/devsViews/devJuliaView.vue')
-    },
-    {
-      path: '/developers/Juliana',
-      name: 'Juliana',
-      component: () => import('../views/devsViews/devJulianaView.vue')
-    },
-    {
-      path: '/developers/Rafaela',
-      name: 'Rafaela',
-      component: () => import('../views/devsViews/devRafaelaView.vue')
-    },
-    {
-      path: '/developers/Vinicius',
-      name: 'Vinicius',
-      component: () => import('../views/devsViews/devViniciusView.vue')
-    },
-
-    // Rotas de cada projeto
-
-    {
-      path: '/projetos/TPInterativa',
-      name: 'TPInterativa',
-      component: () => import('../views/projectsViews/projectTPInterativaView.vue')
-    },
-    {
-      path: '/projetos/Poeirao',
-      name: 'Poeirao',
-      component: () => import('../views/projectsViews/projectPoeiraoView.vue')
-    },
-    {
-      path: '/projetos/Arthisto',
-      name: 'Arthisto',
-      component: () => import('../views/projectsViews/projectArthistoView.vue')
-    },
-    {
-      path: '/projetos/FabricaClass',
-      name: 'FabricaClass',
-      component: () => import('../views/projectsViews/projectFabricaClassView.vue')
-    },
-    {
-      path: '/projetos/FabricaNode',
-      name: 'FabricaNode',
-      component: () => import('../views/projectsViews/projectFabricaNodeView.vue')
-    },
+      path: '/projetos/:id',
+      name: 'projetosInfo',
+      component: () => import('../views/projectsInfoView.vue'),
+      params: true
+    }
   ]
 })
 
